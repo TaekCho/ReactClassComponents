@@ -1,17 +1,14 @@
-import { Component, useState } from "react";
+import { Component } from "react";
+// none of the react hooks can be used in class-based components.
 import User from "./User";
 
 import classes from "./Users.module.css";
 
-const DUMMY_USERS = [
-  { id: "u1", name: "Max" },
-  { id: "u2", name: "Manuel" },
-  { id: "u3", name: "Julie" },
-];
-
 class Users extends Component {
   // Constructor will automatically execute when the class gets instantiated
   constructor() {
+    // we're inheriting from the superset. ADD SUPER!
+    super();
     // "this.state" is built-in(?) so the name is not up to me.
     // When managing multiple states, all has to be fit into one object.
     this.state = {
@@ -37,7 +34,7 @@ class Users extends Component {
   render() {
     const usersList = (
       <ul>
-        {DUMMY_USERS.map((user) => (
+        {this.props.users.map((user) => (
           <User key={user.id} name={user.name} />
         ))}
       </ul>
@@ -45,7 +42,8 @@ class Users extends Component {
 
     return (
       <div className={classes.users}>
-        <button onClick={toggleUsersHandler}>
+        {/* below code is because of how JavaScript works. Don't know why, yet. */}
+        <button onClick={this.ToggleUsersHandler.bind(this)}>
           {this.state.showUsers ? "Hide" : "Show"} Users
         </button>
         {this.state.showUsers && usersList}
@@ -62,7 +60,13 @@ class Users extends Component {
 //   };
 
 //   return (
-
+// const usersList = (
+//   <ul>
+//     {DUMMY_USERS.map((user) => (
+//       <User key={user.id} name={user.name} />
+//     ))}
+//   </ul>
+// );
 //   );
 // };
 
