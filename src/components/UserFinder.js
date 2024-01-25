@@ -11,6 +11,8 @@ const DUMMY_USERS = [
 
 class UserFinder extends Component {
   constructor() {
+    // super() should be added to inherit the superset Component class.
+    super();
     this.state = {
       filteredUsers: DUMMY_USERS,
       searchTerm: "",
@@ -18,6 +20,7 @@ class UserFinder extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // We need to add 'if-check' to prevent infinite loop.
     if (prevState.searchTerm !== this.state.searchTerm) {
       this.setState({
         filteredUsers: DUMMY_USERS.filter((user) =>
