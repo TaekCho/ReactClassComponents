@@ -14,9 +14,15 @@ class UserFinder extends Component {
     // super() should be added to inherit the superset Component class.
     super();
     this.state = {
-      filteredUsers: DUMMY_USERS,
+      filteredUsers: [],
       searchTerm: "",
     };
+  }
+
+  // This is only for when the component first amounts.
+  componentDidMount() {
+    // Send http request... (hypothetically)
+    this.setState({ filteredUsers: DUMMY_USERS });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -47,28 +53,28 @@ class UserFinder extends Component {
   }
 }
 
-const UserFinder = () => {
-  const [filteredUsers, setFilteredUsers] = useState(DUMMY_USERS);
-  const [searchTerm, setSearchTerm] = useState("");
+// const UserFinder = () => {
+//   const [filteredUsers, setFilteredUsers] = useState(DUMMY_USERS);
+//   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    setFilteredUsers(
-      DUMMY_USERS.filter((user) => user.name.includes(searchTerm))
-    );
-  }, [searchTerm]);
+//   useEffect(() => {
+//     setFilteredUsers(
+//       DUMMY_USERS.filter((user) => user.name.includes(searchTerm))
+//     );
+//   }, [searchTerm]);
 
-  const searchChangeHandler = (event) => {
-    setSearchTerm(event.target.value);
-  };
+//   const searchChangeHandler = (event) => {
+//     setSearchTerm(event.target.value);
+//   };
 
-  return (
-    <Fragment>
-      <div className={classes.finder}>
-        <input type="search" onChange={searchChangeHandler} />
-      </div>
-      <Users users={filteredUsers} />
-    </Fragment>
-  );
-};
+//   return (
+//     <Fragment>
+//       <div className={classes.finder}>
+//         <input type="search" onChange={searchChangeHandler} />
+//       </div>
+//       <Users users={filteredUsers} />
+//     </Fragment>
+//   );
+// };
 
 export default UserFinder;

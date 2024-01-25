@@ -42,7 +42,7 @@ class Users extends Component {
 
     return (
       <div className={classes.users}>
-        {/* below code is because of how JavaScript works. Don't know why, yet. */}
+        {/* below code is because of how 'this' in JavaScript works. Don't know why, yet. */}
         <button onClick={this.ToggleUsersHandler.bind(this)}>
           {this.state.showUsers ? "Hide" : "Show"} Users
         </button>
